@@ -55,12 +55,12 @@
                   <TextField fx:id="itemSerialNumber" prefHeight="25.0" prefWidth="171.0" promptText="Serial Number" />
                   <TextField fx:id="itemName" promptText="Item Name" />
                   <TextField fx:id="itemPrice" promptText="Item Price" />
-                  <Button mnemonicParsing="false" text="Add New Item" />
+                  <Button mnemonicParsing="false" onAction="#AddItemButtonClicked" text="Add New Item" />
                </children>
             </HBox>
             <HBox>
                <children>
-                  <Button mnemonicParsing="false" text="Delete Selected Item" />
+                  <Button mnemonicParsing="false" onAction="#DeleteItemButtonClicked" text="Delete Selected Item" />
                </children>
             </HBox>
          </children>

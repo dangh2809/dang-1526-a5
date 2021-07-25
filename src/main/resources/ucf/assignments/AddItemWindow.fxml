@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="serialNumberTextField" prefHeight="0.0" prefWidth="600.0" promptText="Serial Number" />
+            <TextField fx:id="itemNameTextField" promptText="Item Name" />
+            <TextField fx:id="itemPriceTextField" promptText="Item Price" />
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <TextField alignment="TOP_CENTER" prefHeight="19.0" prefWidth="600.0" text="Add Item" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+   </top>
+   <bottom>
+      <Button mnemonicParsing="false" onAction="#AddItemWindowButtonClicked" text="Add Item" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

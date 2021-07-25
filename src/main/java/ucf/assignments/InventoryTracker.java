@@ -7,12 +7,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class InventoryTracker extends Application {
+
     @Override
 
     public void start(Stage primaryStage) {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
-            Scene scene = new Scene(root);
+            SceneManager sceneMenu = new SceneManager();
+            sceneMenu.load();
+
+            Scene scene = sceneMenu.getScene("MainWindow");
             primaryStage.setTitle("Inventory Tracker");
             primaryStage.setScene(scene);
             primaryStage.show();
