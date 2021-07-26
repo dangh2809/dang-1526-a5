@@ -17,6 +17,8 @@ public class SceneManager {
         ItemModel itemModel = new ItemModel();
         MainWindowController mainWindowController = new MainWindowController(itemModel, this);
         AddItemWindowController addItemWindowController = new AddItemWindowController(itemModel, this);
+
+
         Parent root;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainWindow.fxml"));
         loader.setController(mainWindowController);

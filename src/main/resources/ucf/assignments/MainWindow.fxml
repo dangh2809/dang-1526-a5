@@ -7,17 +7,17 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-border-width: 5; -fx-border-style: solid; -fx-border-color: white; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <MenuBar prefWidth="603.0" BorderPane.alignment="CENTER">
+      <MenuBar prefHeight="23.0" prefWidth="600.0" style="-fx-background-color: #9be7ff;" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" style="-fx-color: white;" text="File">
             <items>
               <MenuItem mnemonicParsing="false" text="Save As.." />
                   <MenuItem mnemonicParsing="false" text="Load..." />
@@ -39,30 +39,31 @@
       </MenuBar>
    </top>
    <center>
-      <TableView fx:id="inventoryItemTableView" BorderPane.alignment="CENTER">
+      <TableView fx:id="inventoryItemTableView" prefHeight="264.0" prefWidth="600.0" style="-fx-background-color: #e3f2fd;" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="itemSerialNumberColumn" prefWidth="75.0" text="Serial Number" />
-          <TableColumn fx:id="itemNameColumn" prefWidth="75.0" text="Name" />
-            <TableColumn fx:id="valueItemColumn" prefWidth="75.0" text="Value" />
+          <TableColumn fx:id="itemSerialNumberColumn" onEditCommit="#changeSerialNumberCellEvent" prefWidth="75.0" text="Serial Number" />
+          <TableColumn fx:id="itemNameColumn" onEditCommit="#changeItemNameCellEvent" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="valueItemColumn" onEditCommit="#changeItemPriceCellEvent" prefWidth="75.0" text="Value" />
         </columns>
       </TableView>
    </center>
    <bottom>
-      <VBox BorderPane.alignment="CENTER">
+      <VBox prefHeight="104.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9be7ff;">
                <children>
-                  <TextField fx:id="itemSerialNumber" prefHeight="25.0" prefWidth="171.0" promptText="Serial Number" />
-                  <TextField fx:id="itemName" promptText="Item Name" />
-                  <TextField fx:id="itemPrice" promptText="Item Price" />
-                  <Button mnemonicParsing="false" onAction="#AddItemButtonClicked" text="Add New Item" />
+                  <Button layoutX="121.0" layoutY="40.0" mnemonicParsing="false" onAction="#AddItemButtonClicked" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: #64b5f6;" text="Add New Item" textFill="#fcfafa">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
+                  <Button alignment="TOP_CENTER" layoutX="283.0" layoutY="40.0" mnemonicParsing="false" onAction="#DeleteItemButtonClicked" style="-fx-background-color: #ba6b6c;" text="Delete Item" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
                </children>
-            </HBox>
-            <HBox>
-               <children>
-                  <Button mnemonicParsing="false" onAction="#DeleteItemButtonClicked" text="Delete Selected Item" />
-               </children>
-            </HBox>
+            </Pane>
+            <HBox />
          </children>
       </VBox>
    </bottom>
