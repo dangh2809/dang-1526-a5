@@ -25,6 +25,7 @@ class MainWindowController implements Initializable{
     +changeItemNameCellEvent(TableColumn.CellEditEvent)
     +changeItemPriceCellEvent(TableColumn.CellEditEvent)
     +addItemButtonClicked(EventHandler)
+    
 
     +deleteItemButtonClicked(EventHandler)
 

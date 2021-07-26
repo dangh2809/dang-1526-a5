@@ -13,10 +13,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.converter.DoubleStringConverter;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.NumberFormat;
@@ -49,13 +52,16 @@ public class MainWindowController implements Initializable
 
     private SceneManager sceneManager;
 
+    FileChooser fileChooser = new FileChooser();
 
     public MainWindowController(ItemModel itemModel, SceneManager sceneManager){
         this.itemModel = itemModel;
         this.sceneManager = sceneManager;
 
     }
+    @Override
     public void initialize(URL url, ResourceBundle rb){
+        fileChooser.setInitialDirectory(new File("C:\\temp"));
         //set up the column in the table view
         itemSerialNumberColumn.setCellValueFactory(new PropertyValueFactory<Item,String>("serialNumber"));
         itemNameColumn.setCellValueFactory(new PropertyValueFactory<Item,String>("name"));
@@ -81,6 +87,40 @@ public class MainWindowController implements Initializable
         valueItemColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
 
     }
+    @FXML
+    private void handleSaveClicked(javafx.event.ActionEvent event){
+        Window stage = inventoryItemTableView.getScene().getWindow();
+        fileChooser.setTitle("Save Dialog");
+        fileChooser.setInitialFileName("mysave");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("data file","*.html"),
+                new FileChooser.ExtensionFilter("Json","*.json"));
+        try{
+            File file = fileChooser.showSaveDialog(stage);
+            fileChooser.setInitialDirectory(file.getParentFile());
+            //Save the file
+        }
+        catch(Exception ex){
+
+        }
+    }
+    @FXML
+    private void handleLoadClicked(javafx.event.ActionEvent event){
+        Window stage = inventoryItemTableView.getScene().getWindow();
+        fileChooser.setTitle("Save Dialog");
+
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("data file","*.html","*.csv"),
+                new FileChooser.ExtensionFilter("Json","*.json"),
+                new FileChooser.ExtensionFilter("html", ".html"));
+        try{
+            File file = fileChooser.showSaveDialog(stage);
+            fileChooser.setInitialDirectory(file.getParentFile());
+            //Save the file
+        }
+        catch(Exception ex){
+
+        }
+    }
+
     public void changeSerialNumberCellEvent(TableColumn.CellEditEvent editedCell){
         Item itemSelected = inventoryItemTableView.getSelectionModel().getSelectedItem();
         itemSelected.setSerialNumber((String) editedCell.getNewValue());
