@@ -17,9 +17,6 @@ public class ItemModel {
     public void addItem(String serialNumber, String itemName, double itemPrice){
         itemList.add(new Item(serialNumber, itemName, itemPrice));
     }
-    public void editItem(int index, Item item){
-        itemList.set(index, item);
-    }
     public void deleteItem(Item item){
         itemList.remove(item);
     }

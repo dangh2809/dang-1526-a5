@@ -10,42 +10,62 @@ class SceneManager{
     load()
     getScene(String): scene
 }
-class MainWindowController{
-    items: ItemModel
+class MainWindowController implements Initializable{
+    -items: ItemModel
+    -sceneManager: SceneManager
+    -inventoryItemTableView: TableView<Item>
+    -itemSerialNumberColumn: TableColumn<Item,String>
+    -itemNameColumn: TableColumn<Item,String>
+    -valueItemColumn: TableColumn<Item,Double>
+
+
     +MainWindowController(ItemModel, SceneManager)
+    +initialize(URL,ResourceBundle)
+    +changeSerialNumberCellEvent(TableColumn.CellEditEvent)
+    +changeItemNameCellEvent(TableColumn.CellEditEvent)
+    +changeItemPriceCellEvent(TableColumn.CellEditEvent)
+    +addItemButtonClicked(EventHandler)
 
-    addItemButtonClicked(EventHandler)
-    editItemButtonClicked(EventHandler)
-    removeItemButtonClicked(EventHandler)
-
-    addItem(String,String,BigDecimal)
-    editItem()
-
+    +deleteItemButtonClicked(EventHandler)
 
 }
 class AddItemWindowController{
+    -itemModel: ItemModel
+    -sceneManager: SceneManager
+
+    -serialNumberTextField: TextField
+    -itemNameTextField: TextField
+    -itemPriceTextField: TextField
+
+    +AddItemWindowController(ItemModel, SceneManager)
+    +AddItemWindowButtonClicked(ActionEvent)
 
 }
-class EditItemWindowController{
-}
-class SearchItemWindowController{
-}
-class SearchItemWindowController{
-}
-class RemoveItemWindowController{
-}
 class ItemModel{
-    - ObservableList<Item>
+    - itemlist: ObservableList<Item>
+
+    +getItemList(): ObservableList<Item>
+    +setItemList(ObservableList<Item>)
+    +addItem(String, String, Double)
+    +deleteItem(Item)
+
 }
 class Item{
     -name: SimpleStringProperty
-    - serialNumber: SimpleStringProperty
-    - value : SimpleDoubleProperty
+    -serialNumber: SimpleStringProperty
+    - price : SimpleDoubleProperty
 
-    +getName()
-    +setName()
-    +nameProperty()
-    +getSerialNumber()
+    +Item(String, String, Double)
+
+    +getName(): String
+    +setName(String)
+    +nameProperty(): SimpleStringProperty
+    +getSerialNumber(): String
+    +setSerialNumber(String)
+    +serialNumberProperty(): SimpleStringProperty
+    +getPrice(): double
+    +setPrice(double)
+    +priceProperty(): SimpleDoubleProperty
 }
 class FileManager{
     saveAsCSV()
@@ -56,13 +76,8 @@ openjfx.org.Application <|-- InventoryTracker
 InventoryTracker -- SceneManager
 SceneManager -- MainWindowController
 SceneManager -- AddItemWindowController
-SceneManager -- EditItemWindowController
-SceneManager -- SearchItemWindowController
-SceneManager -- RemoveItemWindowController
 MainWindowController o-- ItemModel
+MainWindowController o-- Item
 AddItemWindowController o-- ItemModel
-EditItemWindowController  o-- ItemModel
-SearchItemWindowController o-- ItemModel
-RemoveItemWindowController o-- ItemModel
 ItemModel *-- Item
 @enduml
