@@ -25,5 +25,3 @@ To Save an item:
     -Naviage to the top-left of the app window.
     -Click "File" then "Save".
     -Type the name and file type to save.
-
-To 
